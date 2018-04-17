@@ -1,0 +1,19 @@
+{
+  "qiniuConfig": {
+    "accessKey": "",
+    "secretKey": "",
+    "bucket": ""
+  },
+  "jwtSecret": "",
+  "mailconfig": {
+    "host": "",
+    "user": "",
+    "password": ""
+  },
+  "mysql": {
+    "host": "",
+    "user": "",
+    "password": "",
+    "database": ""
+  }
+}
