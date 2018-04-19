@@ -1,10 +1,6 @@
 FROM node:alpine
-
+COPY . /app
 WORKDIR /app
-COPY . .
-
-# If you have native dependencies, you'll need extra tools
-# RUN apk add --no-cache make gcc g++ python
-
+RUN npm install --registry=https://registry.npm.taobao.org
 EXPOSE 3001
-CMD ["npm", "run", "build"]
+CMD npm run build

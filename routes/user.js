@@ -30,7 +30,6 @@ const routers = router
    *         description: 登录成功
    */
 
-  .post('/login', userController.login)
-  .get('/getAllUser', userController.getAllUser)
+  .post('/login', userController.user.login.bind(userController.user))
 
 module.exports = routers

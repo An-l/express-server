@@ -1,8 +1,14 @@
-const userService = require('../services/user')
+const Controllers = require('./index.js')
+
+const userService = require('../services/user').userService
 const crypto = require('crypto')
 let out = require('./../utils/out_utils')
 
-module.exports = {
+class User extends Controllers {
+  constructor(service) {
+    super(service)
+  }
+
   async login(req, res, next) {
     // 获取账号密码
     let { username, password } = req.body
@@ -10,16 +16,14 @@ module.exports = {
     var md5Password = md5.update(password).digest('hex')
 
     let resultData = await userService.login(username, md5Password)
-
-    if (resultData.id) {
+    if (resultData) {
       res.send(out.success(resultData, '登录成功'))
     } else {
       res.send(out.error('', '账号或密码错误'))
     }
-  },
-
-  async getAllUser(req, res, next) {
-    let userResult = await userService.getAllUser()
-    res.send(out.success(userResult, ''))
   }
+}
+
+module.exports = {
+  user: new User(userService)
 }

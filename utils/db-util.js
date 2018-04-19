@@ -74,7 +74,8 @@ let insertData = function(table, values) {
  * @param {object} values 更新的数据
  * @param {Sting} id
  */
-let updateDataById = function(table, values, id) {
+let updateDataById = function(table, id, values) {
+  id = parseInt(id)
   let _sql = 'UPDATE ?? SET ? WHERE id = ?'
   return query(_sql, [table, values, id])
 }
@@ -87,6 +88,17 @@ let updateDataById = function(table, values, id) {
 let deleteDataById = function(table, id) {
   let _sql = 'DELETE FROM ?? WHERE id = ?'
   return query(_sql, [table, id])
+}
+
+/**
+ * 根据id改变tb_status的状态
+ * @param {Sting} table 表名
+ * @param {Sting} id
+ * @param {Sting} stauts 状态值
+ */
+let changeStatusDataById = function(table, id, status) {
+  let _sql = 'UPDATE ?? SET tb_status = ? WHERE id = ?'
+  return query(_sql, [table, status, id])
 }
 
 /**
@@ -105,7 +117,7 @@ let select = function(table, keys) {
  * @param {Sting} table 表名
  */
 let count = function(table) {
-  let _sql = 'SELECT COUNT(*) AS total_count FROM ?? '
+  let _sql = 'SELECT COUNT(*) AS totals FROM ?? '
   return query(_sql, [table])
 }
 
@@ -117,6 +129,7 @@ module.exports = {
   deleteDataById,
   insertData,
   updateDataById,
+  changeStatusDataById,
   select,
   count
 }

@@ -58,8 +58,8 @@ app.use(session({
   secret: 'node-tpl',
   name: 'code', // 这里的name值得是cookie的name，默认cookie的name是：connect.sid
   cookie: { maxAge: 30 * 1000 * 60 }, // 设置maxAge是80000ms，即30分钟后session和相应的cookie失效过期
-  resave: false
-  // saveUninitialized: true // 是否自动保存未初始化的会话，建议false
+  resave: false,
+  saveUninitialized: false // 是否自动保存未初始化的会话，建议false
 }))
 
 // 设置静态文件路径
